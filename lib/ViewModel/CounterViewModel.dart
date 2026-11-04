@@ -5,23 +5,25 @@ class CounterViewModel{
   final bool symbole;
   late CounterModel model;
   CounterViewModel({required this.counter,required this.symbole}){
-    this.counter = counter;
+    this.counter = 0;
     model = CounterModel(counter:this.counter);
   }
   Future<int> getCounter() async{
-    if(model.min! >= 0 && this.counter >= 0){
+    if(model.min! >= 0 && (this.counter >= model.min! && this.counter <= model.max!)){
       try{
-
         switch(this.symbole){
+          //Si le plus est appuyé !
           case true:
             this.counter += 1;
             return await this.counter + 1;
+            //Si le bouton '-' est appuyé !
           case false:
             this.counter = this.counter >= 0 ? this.counter - 1 : this.counter;
             return await this.counter >= 0 ? this.counter - 1 : this.counter;
-          /*case '*':
-            return await this.value * this.value;*/
-        /*case '/':
+            //Dans le cas ou je vais faire une calculatrice !
+            /*case '*':
+            return await this.value * this.value;
+          case '/':
             return await this.value / this.value;*/
           default:
             this.counter = 0;
@@ -31,7 +33,7 @@ class CounterViewModel{
         return 0;
       }
     }else{
-      return 0;
+      return this.counter;
     }
   }
 }
