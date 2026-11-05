@@ -2,10 +2,11 @@ import 'dart:async';
 import 'package:counter/Model/CounterModel.dart';
 class CounterViewModel{
   int counter;
-  final bool symbole;
+  bool symbole;
   late CounterModel model;
   CounterViewModel({required this.counter,required this.symbole}){
-    this.counter = 0;
+    this.counter = counter;
+    this.symbole = symbole;
     model = CounterModel(counter:this.counter);
   }
   Future<int> getCounter() async{
