@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:async';
-import 'package:counter/Services/CounterServices.dart';
 class CounterModel{
   final int? max;
   final int? min;
@@ -14,11 +11,4 @@ class CounterModel{
     );
   }
   Map<String, dynamic> toJson() => {'counter':this.counter};
-  Future<CounterModel> CounterDataModel() async{
-    try{
-      return await CounterModel.fromJson(jsonDecode(getData('./data.json').toString()) as Map<String, dynamic>);
-    }catch(e){
-      return CounterModel(counter:0);
-    }
-  }
 }
